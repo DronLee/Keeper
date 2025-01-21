@@ -1,0 +1,111 @@
+﻿<Window
+    x:Class="Keeper.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:models="clr-namespace:Keeper.Models"
+    mc:Ignorable="d"
+    Width="770" WindowStartupLocation="CenterScreen" Icon="/Keeper;component/Icons/Icon.png" Title="{DynamicResource MainWindowTitle}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,0,0,5">
+            <Image Width="40" Margin="0,5,0,5" Source="{Binding ConnectStatus.ImageUrl}" HorizontalAlignment="Left">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ConnectStatus.Comment}"/>
+                </Image.ToolTip>
+            </Image>
+
+            <Button Name="AddItemBtn" Command="{Binding AddItemCommand}" ToolTip="{DynamicResource AddItemButtonToolTip}" 
+                    Margin="0,5,0,5" BorderThickness="0" Background="Transparent" Width="Auto"
+                    IsEnabled="{Binding ConnectStatus.Online}">
+                <Image Source="/Keeper;component/Icons/AddItem.png" Width="40"></Image>
+            </Button>
+
+            <Button Command="{Binding SettingsCommand}" ToolTip="{DynamicResource SettingsButtonToolTip}" 
+                    Margin="0,5,0,5" BorderThickness="0" Background="Transparent" Width="Auto">
+                <Image Source="/Keeper;component/Icons/Settings.png" Width="40"></Image>
+            </Button>
+        </StackPanel>
+
+        <TabControl Grid.Row="1" ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedSection, Mode=TwoWay}">
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="models:IDataSection">
+                    <TextBlock Text="{Binding SectionName}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="models:IDataSection">
+                    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Data}">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="FontSize" Value="15" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button ToolTip="{DynamicResource EditItemButtonToolTip}" Command="{Binding Path=EditCommand}">
+                                            <Image Source="/Keeper;component/Icons/ItemEdit.png" Width="25"></Image>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button ToolTip="{DynamicResource DeleteItemButtonToolTip}" Command="{Binding Path=DeleteCommand}">
+                                            <Image Source="/Keeper;component/Icons/ItemDelete.png" Width="25"></Image>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="{DynamicResource NameLabel}" Width="200" IsReadOnly="True" Binding="{Binding Name}"/>
+
+                            <DataGridTextColumn Header="{DynamicResource LoginLabel}" Width="150" IsReadOnly="True" Binding="{Binding Login}" />
+
+                            <DataGridTemplateColumn Header="{DynamicResource PasswordLabel}" Width="300">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="0"
+                                                Content="{Binding PasswordView}"
+                                                Command="{Binding PasswordClickCommand}"/>
+                                            <Button Grid.Column="1" Padding="5,0,5,0"
+                                                Content="{DynamicResource CopyButtonName}"
+                                                Command="{Binding PasswordToBuferCommand}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>

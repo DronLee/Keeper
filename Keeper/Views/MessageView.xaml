@@ -1,0 +1,27 @@
+﻿<Window x:Class="Keeper.Views.MessageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      SizeToContent="Height" Width="400" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize"
+      Name="MessageWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Message}" TextAlignment="Center"/>
+
+        <Button Grid.Row="1" Grid.Column="0" Margin="5" Content="{Binding ApplyText}"
+            Command="{Binding ApplyCommand}" CommandParameter="{Binding ElementName=MessageWindow}"/>
+
+        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="{Binding CancelText}"
+            Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=MessageWindow}"/>
+    </Grid>
+</Window>

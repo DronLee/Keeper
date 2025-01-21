@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <v:String x:Key="MainWindowTitle">Хранитель паролей</v:String>
+    <v:String x:Key="NameLabel">Наименование</v:String>
+    <v:String x:Key="LoginLabel">Логин</v:String>
+    <v:String x:Key="PasswordLabel">Пароль</v:String>
+    <v:String x:Key="SettingsTitle">Настройки</v:String>
+    <v:String x:Key="ApplySettingsButtonName">Apply changed settings</v:String>
+    <v:String x:Key="SettingsButtonToolTip">Настройки</v:String>
+    <v:String x:Key="LanguageSelection">Выбор языка</v:String>
+    <v:String x:Key="SignatureLabel">Подпись</v:String>
+    <v:String x:Key="GeneratePasswordButtonName">Сгенерировать</v:String>
+    <v:String x:Key="CopyButtonName">Копировать</v:String>
+    <v:String x:Key="AddItemButtonToolTip">Добавить запись</v:String>
+    <v:String x:Key="DeleteItemButtonToolTip">Удалить запись</v:String>
+    <v:String x:Key="EditItemButtonToolTip">Редактировать запись</v:String>
+    <v:String x:Key="ConnectionWithCloudDoesntExist">Нет соединения с облаком</v:String>
+    <v:String x:Key="ConnectionWithCloudExists">Есть соединение с облаком</v:String>
+    <v:String x:Key="DataFileLocalPathStringFormat">Локальный путь к файлу с данными: {0}</v:String>
+    <v:String x:Key="ShowPassword">Показать</v:String>
+    <v:String x:Key="OtherSectionName">Остальное</v:String>
+    <v:String x:Key="WindowDeleteRecordAsk">Уверены, что хотите удалить запись?</v:String>
+    <v:String x:Key="WindowDeleteRecordOk">Да, удалить</v:String>
+    <v:String x:Key="WindowDeleteRecordCancel">Отмена</v:String>
+    <v:String x:Key="YandexAuthorizationCodeTitle">Код для авторизации</v:String>
+</ResourceDictionary>
