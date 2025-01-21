@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+*/bin
+*/obj
+/packages
+/tests/*/bin
+/tests/*/obj
+/Keeper/client_secret.json
+/Keeper/appsettings.Production.json
